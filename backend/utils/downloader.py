@@ -2,7 +2,14 @@ import requests
 import uuid
 import os
 
-TEMP_DIR = "temp"
+# Get absolute base directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Absolute temp directory
+TEMP_DIR = os.path.join(BASE_DIR, "temp")
+
+# Ensure temp directory exists
+os.makedirs(TEMP_DIR, exist_ok=True)
 
 def download_file(url: str) -> str:
     try:

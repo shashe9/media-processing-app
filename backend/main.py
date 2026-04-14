@@ -25,6 +25,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 outputs_dir = os.path.join(BASE_DIR, "outputs")
 os.makedirs(outputs_dir, exist_ok=True)
 
+temp_dir = os.path.join(BASE_DIR, "temp")
+os.makedirs(temp_dir, exist_ok=True)
+
 
 app.mount(
     "/outputs",
