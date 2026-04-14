@@ -7,7 +7,7 @@ function App() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+  const API_URL = process.env.REACT_APP_API_URL || "https://media-processing-app-l9fq.onrender.com";
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -33,14 +33,7 @@ function App() {
       if (data.status === "success") {
         console.log("Output URL:", data.output);
 
-        let fixedUrl = data.output;
-
-        // If running inside Docker, backend returns localhost → fix it
-        if (fixedUrl.includes("localhost")) {
-          fixedUrl = fixedUrl.replace("localhost", window.location.hostname);
-        }
-
-        setOutput(fixedUrl);
+        setOutput(data.output);
       } else {
         setError(data.detail || "Error occurred");
       }
