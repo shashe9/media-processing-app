@@ -73,8 +73,16 @@ function App() {
           <option value="extract_audio">Extract Audio</option>
         </select>
 
-        <button onClick={handleSubmit} style={styles.button}>
-          Process
+        <button
+          onClick={handleSubmit}
+          style={{
+            ...styles.button,
+            opacity: loading ? 0.6 : 1,
+            cursor: loading ? "not-allowed" : "pointer"
+          }}
+          disabled={loading}
+        >
+          {loading ? "Processing..." : "Process"}
         </button>
       </div>
 
@@ -83,7 +91,7 @@ function App() {
 
       {output && (
         <div style={styles.result}>
-          <h3>Result</h3>
+          <h3 style={{ marginBottom: "15px", color: "#FFD700" }}>Result</h3>
 
           {operation === "thumbnail" && (
             <img src={output} alt="thumbnail" style={styles.media} />
@@ -101,8 +109,8 @@ function App() {
             </audio>
           )}
 
-          <a href={output} target="_blank" rel="noreferrer">
-            Open File
+          <a href={output} target="_blank" rel="noreferrer" style={styles.link}>
+            Open File ↗
           </a>
         </div>
       )}
@@ -116,64 +124,108 @@ function App() {
 
 const styles = {
   container: {
-    height: "100vh",
+    minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "#0f172a",
-    color: "#fff",
-    fontFamily: "Arial, sans-serif",
+    background: "#0a0a0a",
+    color: "#ffffff",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+    padding: "20px",
   },
+
   card: {
-    background: "#1e293b",
-    padding: "30px",
-    borderRadius: "12px",
-    width: "600px",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+    background: "#111111",
+    padding: "40px",
+    borderRadius: "16px",
+    width: "650px",
+    boxShadow: "0 20px 50px rgba(0,0,0,0.7)",
+    border: "1px solid rgba(255,215,0,0.15)",
   },
+
   title: {
+    fontSize: "28px",
     marginBottom: "10px",
+    color: "#FFD700",
+    textAlign: "center",
+    letterSpacing: "1px",
   },
+
   subtitle: {
-    marginBottom: "20px",
-    color: "#94a3b8",
+    textAlign: "center",
+    marginBottom: "30px",
+    color: "#bbbbbb",
+    fontSize: "14px",
   },
+
   inputGroup: {
     display: "flex",
-    gap: "10px",
-    marginBottom: "20px",
+    gap: "12px",
+    marginBottom: "25px",
   },
+
   input: {
     flex: 1,
-    padding: "10px",
-    borderRadius: "6px",
-    border: "none",
+    padding: "12px",
+    borderRadius: "8px",
+    border: "1px solid #333",
+    background: "#1a1a1a",
+    color: "#fff",
+    outline: "none",
   },
+
   select: {
-    padding: "10px",
-    borderRadius: "6px",
+    padding: "12px",
+    borderRadius: "8px",
+    border: "1px solid #333",
+    background: "#1a1a1a",
+    color: "#fff",
   },
+
   button: {
-    padding: "10px 15px",
-    background: "#3b82f6",
-    color: "white",
+    padding: "12px 18px",
+    background: "linear-gradient(135deg, #FFD700, #bfa100)",
+    color: "#000",
     border: "none",
-    borderRadius: "6px",
+    borderRadius: "8px",
     cursor: "pointer",
+    fontWeight: "bold",
+    transition: "all 0.2s ease",
   },
+
   loading: {
-    color: "#facc15",
+    textAlign: "center",
+    color: "#FFD700",
+    marginBottom: "10px",
   },
+
   error: {
-    color: "#ef4444",
+    textAlign: "center",
+    color: "#ff4d4d",
+    marginBottom: "10px",
   },
+
   result: {
-    marginTop: "20px",
+    marginTop: "25px",
+    padding: "20px",
+    background: "#0d0d0d",
+    borderRadius: "12px",
+    border: "1px solid rgba(255,215,0,0.1)",
   },
+
   media: {
     width: "100%",
-    borderRadius: "8px",
-    marginBottom: "10px",
+    borderRadius: "10px",
+    marginBottom: "15px",
+    border: "1px solid #222",
+  },
+
+  link: {
+    display: "inline-block",
+    marginTop: "10px",
+    color: "#FFD700",
+    textDecoration: "none",
+    fontSize: "14px",
   },
 };
 
