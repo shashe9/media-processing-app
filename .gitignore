@@ -1,0 +1,4 @@
+backend/temp/
+backend/outputs/
+backend/venv/
+node_modules/
