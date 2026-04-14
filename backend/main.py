@@ -6,6 +6,7 @@ from fastapi.staticfiles import StaticFiles
 import os
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import Request
 
 
 
@@ -46,18 +47,18 @@ def home():
 
 
 @app.post("/process")
-def process_media_api(request: ProcessRequest):
+def process_media_api(request: ProcessRequest, req: Request):
     try:
         input_path = download_file(request.url)
         output_path = process_media(input_path, request.operation)
 
-       
-
         filename = os.path.basename(output_path)
+
+        base_url = str(req.base_url).rstrip("/")
 
         return {
             "status": "success",
-            "output": f"http://localhost:8000/outputs/{filename}"
+            "output": f"{base_url}/outputs/{filename}"
         }
 
     except Exception as e:
