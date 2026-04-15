@@ -256,10 +256,6 @@ REACT_APP_API_URL=https://media-processing-app-l9fq.onrender.com
 
 ---
 
-## Resume Description
-
-Developed a full-stack media processing platform using FastAPI and React, integrating FFmpeg for video transformation tasks. Deployed backend on Render and frontend on Vercel, handling real-world issues such as API integration, file handling, timeout management, and cross-origin communication.
-
 ---
 
 ## Author
